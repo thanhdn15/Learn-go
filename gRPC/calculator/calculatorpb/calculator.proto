@@ -1,0 +1,66 @@
+syntax = "proto3";
+
+package calculatorpb;
+
+option go_package="calculator/calculatorpb";
+
+message SumRequest {
+  int32 num1 = 1;
+  int32 num2 = 2;
+}
+
+message SumResponse {
+  int32 result = 1;
+}
+
+message PNDRequest {
+  int32 number = 1;
+}
+
+message PNDResponse {
+  int32 result = 1;
+}
+
+message AverageRequest {
+  float num = 1;
+}
+
+message AverageResponse {
+  float result = 1;
+}
+
+message MaxRequest {
+  int32 num = 1;
+}
+
+message MaxResponse {
+  int32 result = 1;
+}
+
+message SquareRequest {
+  int32 num = 1;
+}
+
+message SquareResponse {
+  double squareRoot = 1;
+}
+
+service CalculatorService {
+  // unary api
+  rpc Sum(SumRequest) returns (SumResponse) {}
+
+  // unary api
+  rpc SumWithDeadline(SumRequest) returns (SumResponse) {}
+
+  // Server streaming
+  rpc PrimeNumberDecomposition(PNDRequest) returns (stream PNDResponse){}
+
+  // Client streaming
+  rpc Average(stream AverageRequest) returns (AverageResponse){}
+
+  // Bi-Directional Streaming API
+  rpc Max(stream MaxRequest) returns (stream MaxResponse){}
+
+  // handle Error
+  rpc Square(SquareRequest) returns (SquareResponse){}
+}
