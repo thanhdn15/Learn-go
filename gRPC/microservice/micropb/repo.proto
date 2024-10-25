@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package microservice;
+option go_package = "microservice/micropb";
+
+message sendRequestMessage {
+  string message = 1;
+}
+
+message sendResponseMessage {
+  string result = 1;
+}
+
+message receiveRequestMessage {
+  string message = 1;
+}
+
+message receiveResponseMessage {
+  string result = 1;
+}
+
+service serviceSendMessage {
+  rpc sendMessage(sendRequestMessage) returns (sendResponseMessage){}
+}
+
+service serviceReceivedMessage {
+  rpc receiveMessage(receiveRequestMessage) returns (receiveResponseMessage){}
+}
