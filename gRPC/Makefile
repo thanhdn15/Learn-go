@@ -15,3 +15,13 @@ run-send-server:
 
 run-receive-server:
 	go run microservice/serviceReceiveMessage/main.go
+
+gen-con:
+	protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative contact/contactpb/contact.proto
+
+run-con-client:
+	go run contact/client/main.go
+
+run-con-server:
+	go run contact/server/*.go
+
